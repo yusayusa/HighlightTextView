@@ -24,11 +24,11 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
         if textView.text.characters.count <= maxCharactersNumber {
             return
         }
-        guard let font = textView.font else {
+        guard let font = font else {
             return
         }
         let attributes = NSMutableAttributedString(string: text)
-        attributes.setAttributes([NSBackgroundColorAttributeName: UIColor.red, NSFontAttributeName: font],
+        attributes.setAttributes([NSBackgroundColorAttributeName: overBackgroundColor, NSFontAttributeName: font],
                                  range: NSRange(location: maxCharactersNumber,
                                                 length: textView.text.characters.count - maxCharactersNumber))
         attributedText = attributes
