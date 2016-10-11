@@ -11,7 +11,7 @@ import UIKit
 open class HighlightTextView: UITextView, UITextViewDelegate {
     
     open var maxCharactersNumber: Int = 20
-    open var overBackgroundColor: UIColor = UIColor.red
+    open var overBackgroundColor: UIColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
     
     open override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +24,14 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
         if textView.text.characters.count <= maxCharactersNumber {
             return
         }
+        
         guard let font = font else {
             return
         }
+        
         let attributes = NSMutableAttributedString(string: text)
-        attributes.setAttributes([NSBackgroundColorAttributeName: overBackgroundColor, NSFontAttributeName: font],
+        attributes.addAttributes([NSFontAttributeName: font], range: NSRange(location: 0, length: text.characters.count))
+        attributes.addAttributes([NSBackgroundColorAttributeName: overBackgroundColor],
                                  range: NSRange(location: maxCharactersNumber,
                                                 length: textView.text.characters.count - maxCharactersNumber))
         attributedText = attributes

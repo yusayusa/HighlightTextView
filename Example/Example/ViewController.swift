@@ -15,10 +15,13 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        highlightTextView.maxCharactersNumber = 5
-        highlightTextView.overBackgroundColor = UIColor.yellow
     }
 
-    @IBOutlet private weak var highlightTextView: HighlightTextView!
+    @IBOutlet private weak var highlightTextView: HighlightTextView! {
+        didSet {
+            highlightTextView.maxCharactersNumber = 5
+            highlightTextView.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+    }
 }
 
