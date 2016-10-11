@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		606FFE701DABB3F200A0C14A /* HighlightTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 606FFE6E1DABB3F200A0C14A /* HighlightTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		606FFEAB1DABBE3200A0C14A /* HighlightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FFEAA1DABBE3200A0C14A /* HighlightTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,7 @@
 		606FFE6E1DABB3F200A0C14A /* HighlightTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighlightTextView.h; sourceTree = "<group>"; };
 		606FFE6F1DABB3F200A0C14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		606FFE941DABBC0200A0C14A /* Example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Example.xcodeproj; path = Example/Example.xcodeproj; sourceTree = "<group>"; };
+		606FFEAA1DABBE3200A0C14A /* HighlightTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				606FFE6E1DABB3F200A0C14A /* HighlightTextView.h */,
 				606FFE6F1DABB3F200A0C14A /* Info.plist */,
+				606FFEAA1DABBE3200A0C14A /* HighlightTextView.swift */,
 			);
 			path = HighlightTextView;
 			sourceTree = "<group>";
@@ -115,6 +118,7 @@
 				TargetAttributes = {
 					606FFE6A1DABB3F200A0C14A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -167,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				606FFEAB1DABBE3200A0C14A /* HighlightTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +280,7 @@
 		606FFE741DABB3F200A0C14A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -286,6 +292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yusakzk.HighlightTextView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -293,6 +300,7 @@
 		606FFE751DABB3F200A0C14A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
