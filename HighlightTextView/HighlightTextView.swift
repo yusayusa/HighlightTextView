@@ -16,18 +16,26 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
     open override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
+        
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(self.didChangeTextView(notification:)),
+                         name: NSNotification.Name.UITextViewTextDidChange,
+                         object: nil)
+
     }
     
-    open func textViewDidChange(_ textView: UITextView) {
-        
-        if textView.text.characters.count <= maxCharactersNumber {
+    open func didChangeTextView(notification: NSNotification) {
+
+        if text.characters.count <= maxCharactersNumber {
             return
         }
         
         var attributes = NSMutableAttributedString(attributedString: attributedText)
         attributes.addAttributes([NSBackgroundColorAttributeName: overBackgroundColor],
                                  range: NSRange(location: maxCharactersNumber,
-                                                length: textView.text.characters.count - maxCharactersNumber))
+                                                length: text.characters.count - maxCharactersNumber))
         attributedText = attributes
+
     }
 }
