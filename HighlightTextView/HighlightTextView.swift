@@ -25,7 +25,7 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
 
     }
     
-    open func didChangeTextView(notification: NSNotification) {
+    private func didChangeTextView(notification: NSNotification) {
 
         if text.characters.count <= maxCharactersNumber {
             return
