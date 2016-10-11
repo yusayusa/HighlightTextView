@@ -15,7 +15,6 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
     
     open override func awakeFromNib() {
         super.awakeFromNib()
-        
         delegate = self
     }
     
@@ -25,12 +24,7 @@ open class HighlightTextView: UITextView, UITextViewDelegate {
             return
         }
         
-        guard let font = font else {
-            return
-        }
-        
-        let attributes = NSMutableAttributedString(string: text)
-        attributes.addAttributes([NSFontAttributeName: font], range: NSRange(location: 0, length: text.characters.count))
+        var attributes = NSMutableAttributedString(attributedString: attributedText)
         attributes.addAttributes([NSBackgroundColorAttributeName: overBackgroundColor],
                                  range: NSRange(location: maxCharactersNumber,
                                                 length: textView.text.characters.count - maxCharactersNumber))
