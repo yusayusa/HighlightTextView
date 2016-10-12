@@ -8,34 +8,31 @@
 
 import UIKit
 
-open class HighlightTextView: UITextView, UITextViewDelegate {
+open class HighlightTextView: UITextView {
     
-    open var maxCharactersNumber: Int = 20
+    open var maxCharactersNumber: Int = 100
     open var overBackgroundColor: UIColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
     
     open override func awakeFromNib() {
         super.awakeFromNib()
-        delegate = self
         
         NotificationCenter.default
             .addObserver(self,
                          selector: #selector(self.didChangeTextView(notification:)),
                          name: NSNotification.Name.UITextViewTextDidChange,
-                         object: nil)
-
+                         object: self)
     }
     
     private func didChangeTextView(notification: NSNotification) {
-
+        
         if text.characters.count <= maxCharactersNumber {
             return
         }
-        
-        var attributes = NSMutableAttributedString(attributedString: attributedText)
+                
+        let attributes = NSMutableAttributedString(attributedString: attributedText)
         attributes.addAttributes([NSBackgroundColorAttributeName: overBackgroundColor],
                                  range: NSRange(location: maxCharactersNumber,
                                                 length: text.characters.count - maxCharactersNumber))
         attributedText = attributes
-
     }
 }
