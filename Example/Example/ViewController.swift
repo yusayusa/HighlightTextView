@@ -12,16 +12,11 @@ import HighlightTextView
 
 final class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
     @IBOutlet private weak var highlightTextView: HighlightTextView! {
         didSet {
             highlightTextView.maxCharactersNumber = 50
-            highlightTextView.font = UIFont.boldSystemFont(ofSize: 15)
-            highlightTextView.text = "50文字まで"
+            highlightTextView.font = UIFont.boldSystemFont(ofSize: 20)
+            highlightTextView.text = "50 character limit"
         }
     }
 }
