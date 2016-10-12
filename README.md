@@ -20,3 +20,6 @@ textView.characterLimit = 200
 // set background color
 textView.overLimitBackgroundColor = UIColor.red
 ```
+
+## License
+HighlightTextView is released under the MIT license. Go read the LICENSE file for more information.
