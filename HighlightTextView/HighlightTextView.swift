@@ -23,12 +23,16 @@ open class HighlightTextView: UITextView {
                          object: self)
     }
     
-    private func didChangeTextView(notification: NSNotification) {
+    @objc private func didChangeTextView(notification: NSNotification) {
         
-        if text.characters.count <= maxCharactersNumber {
+        if text.characters.count < maxCharactersNumber {
             return
         }
-                
+        
+        if markedTextRange != nil {
+            return
+        }
+        
         let attributes = NSMutableAttributedString(attributedString: attributedText)
         attributes.addAttributes([NSBackgroundColorAttributeName: overBackgroundColor],
                                  range: NSRange(location: maxCharactersNumber,

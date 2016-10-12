@@ -19,9 +19,9 @@ final class ViewController: UIViewController {
 
     @IBOutlet private weak var highlightTextView: HighlightTextView! {
         didSet {
-            highlightTextView.maxCharactersNumber = 10
+            highlightTextView.maxCharactersNumber = 50
             highlightTextView.font = UIFont.boldSystemFont(ofSize: 15)
-            highlightTextView.text = "10文字まで"
+            highlightTextView.text = "50文字まで"
         }
     }
 }
