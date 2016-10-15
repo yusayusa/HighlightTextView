@@ -18,12 +18,12 @@ open class HighlightTextView: UITextView {
         
         NotificationCenter.default
             .addObserver(self,
-                         selector: #selector(self.didChangeTextView(notification:)),
+                         selector: #selector(self.didChangeTextView),
                          name: NSNotification.Name.UITextViewTextDidChange,
                          object: self)
     }
     
-    @objc private func didChangeTextView(notification: NSNotification) {
+    private dynamic func didChangeTextView() {
         
         if text.characters.count < characterLimit {
             return
