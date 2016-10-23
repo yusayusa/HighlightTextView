@@ -10,8 +10,7 @@ import UIKit
 
 open class HighlightTextView: UITextView {
     
-    open var characterLimit: Int = 100
-    open var overLimitBackgroundColor: UIColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+    open var condition: Condition = Condition(characterMaxLimit: 100, characterMinLimit: nil, highlightColor: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
     
     open override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +24,11 @@ open class HighlightTextView: UITextView {
     
     private dynamic func didChangeTextView() {
         
-        if text.characters.count < characterLimit {
+        guard let characterMaxLimit = condition.characterMaxLimit, let highlightColor = condition.highlightColor else {
+            return
+        }
+        
+        if text.characters.count < characterMaxLimit {
             return
         }
         
@@ -34,9 +37,22 @@ open class HighlightTextView: UITextView {
         }
         
         let attributes = NSMutableAttributedString(attributedString: attributedText)
-        attributes.addAttributes([NSBackgroundColorAttributeName: overLimitBackgroundColor],
-                                 range: NSRange(location: characterLimit,
-                                                length: text.characters.count - characterLimit))
+        attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
+                                 range: NSRange(location: characterMaxLimit,
+                                                length: text.characters.count - characterMaxLimit))
         attributedText = attributes
+    }
+}
+
+public struct Condition {
+    public let characterMaxLimit: Int?
+    public let characterMinLimit: Int?
+    public let highlightColor: UIColor?
+    
+    public init(characterMaxLimit: Int?, characterMinLimit: Int?, highlightColor: UIColor?) {
+        
+        self.characterMaxLimit = characterMaxLimit
+        self.characterMinLimit = characterMinLimit
+        self.highlightColor = highlightColor
     }
 }
