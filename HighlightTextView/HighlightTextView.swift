@@ -15,8 +15,8 @@ open class HighlightTextView: UITextView {
     open override func awakeFromNib() {
         super.awakeFromNib()
         
-        if let characterMinLimit = condition?.characterMinLimit,
-            let highlightColor = condition?.highlightColor,
+        if let characterMinLimit = condition?.minLimit?.characterLimit,
+            let highlightColor = condition?.minLimit?.highlightColor,
             text.characters.count < characterMinLimit {
             
             let attributes = NSMutableAttributedString(attributedString: attributedText)
@@ -39,8 +39,8 @@ open class HighlightTextView: UITextView {
             return
         }
         
-        if let characterMinLimit = condition?.characterMinLimit,
-            let highlightColor = condition?.highlightColor {
+        if let characterMinLimit = condition?.minLimit?.characterLimit,
+            let highlightColor = condition?.minLimit?.highlightColor {
             
             if text.characters.count >= characterMinLimit {
                 
@@ -61,8 +61,8 @@ open class HighlightTextView: UITextView {
             }
         }
         
-        if let characterMaxLimit = condition?.characterMaxLimit,
-            let highlightColor = condition?.highlightColor,
+        if let characterMaxLimit = condition?.maxLimit?.characterLimit,
+            let highlightColor = condition?.maxLimit?.highlightColor,
             text.characters.count >= characterMaxLimit {
             
             let attributes = NSMutableAttributedString(attributedString: attributedText)
