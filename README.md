@@ -8,7 +8,8 @@
 
 ## Requirements
 
-Swift **3.0** iOS **8.0**
+Swift **3.0**
+iOS **8.0**
 
 ## Usage
 ```swift
