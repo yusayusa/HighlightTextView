@@ -43,16 +43,3 @@ open class HighlightTextView: UITextView {
         attributedText = attributes
     }
 }
-
-public struct Condition {
-    public let characterMaxLimit: Int?
-    public let characterMinLimit: Int?
-    public let highlightColor: UIColor?
-    
-    public init(characterMaxLimit: Int?, characterMinLimit: Int?, highlightColor: UIColor?) {
-        
-        self.characterMaxLimit = characterMaxLimit
-        self.characterMinLimit = characterMinLimit
-        self.highlightColor = highlightColor
-    }
-}
