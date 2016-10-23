@@ -11,8 +11,9 @@ import Foundation
 public struct Condition {
     
     public struct MaxLimit {
-        public var characterLimit: Int?
-        public var highlightColor: UIColor?
+        
+        let characterLimit: Int?
+        let highlightColor: UIColor?
         
         public init(characterLimit: Int? = 100, highlightColor: UIColor? = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)) {
             
@@ -22,8 +23,9 @@ public struct Condition {
     }
     
     public struct MinLimit {
-        public var characterLimit: Int?
-        public var highlightColor: UIColor?
+        
+        let characterLimit: Int?
+        let highlightColor: UIColor?
         
         public init(characterLimit: Int? = nil, highlightColor: UIColor? = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)) {
             
@@ -32,8 +34,8 @@ public struct Condition {
         }
     }
     
-    public var maxLimit: MaxLimit?
-    public var minLimit: MinLimit?
+    let maxLimit: MaxLimit?
+    let minLimit: MinLimit?
     
     public init(maxLimit: MaxLimit? = MaxLimit(), minLimit: MinLimit? = MinLimit()) {
         
