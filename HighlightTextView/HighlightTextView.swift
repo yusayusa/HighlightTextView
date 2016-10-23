@@ -15,6 +15,17 @@ open class HighlightTextView: UITextView {
     open override func awakeFromNib() {
         super.awakeFromNib()
         
+        if let characterMinLimit = condition?.characterMinLimit,
+            let highlightColor = condition?.highlightColor,
+            text.characters.count < characterMinLimit {
+            
+            let attributes = NSMutableAttributedString(attributedString: attributedText)
+            attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
+                                     range: NSRange(location: 0,
+                                                    length: text.characters.count))
+            attributedText = attributes
+        }
+        
         NotificationCenter.default
             .addObserver(self,
                          selector: #selector(self.didChangeTextView),
@@ -27,7 +38,7 @@ open class HighlightTextView: UITextView {
         if markedTextRange != nil {
             return
         }
-
+        
         if let characterMinLimit = condition?.characterMinLimit,
             let highlightColor = condition?.highlightColor {
             
@@ -49,7 +60,7 @@ open class HighlightTextView: UITextView {
                 attributedText = attributes
             }
         }
-
+        
         if let characterMaxLimit = condition?.characterMaxLimit,
             let highlightColor = condition?.highlightColor,
             text.characters.count >= characterMaxLimit {

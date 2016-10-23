@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HighlightTextView/HighlightTextView.swift"
-            timestampString = "498933344.444998"
+            timestampString = "498934286.160858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "didChangeTextView()"
             landmarkType = "7">
          </BreakpointContent>
