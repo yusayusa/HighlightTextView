@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
 
     @IBOutlet private weak var highlightTextView: HighlightTextView! {
         didSet {
-            let condition = Condition(characterMaxLimit: 50, characterMinLimit: nil, highlightColor: nil)
+            let condition = Condition(characterMaxLimit: 50)
             highlightTextView.condition = condition
             highlightTextView.font = UIFont.boldSystemFont(ofSize: 20)
             highlightTextView.text = "50 character limit"

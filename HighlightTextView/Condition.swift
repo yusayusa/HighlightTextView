@@ -14,7 +14,7 @@ public struct Condition {
     public let characterMinLimit: Int?
     public let highlightColor: UIColor?
     
-    public init(characterMaxLimit: Int?, characterMinLimit: Int?, highlightColor: UIColor?) {
+    public init(characterMaxLimit: Int? = nil, characterMinLimit: Int? = nil, highlightColor: UIColor? = nil) {
         
         self.characterMaxLimit = characterMaxLimit
         self.characterMinLimit = characterMinLimit

@@ -10,7 +10,7 @@ import UIKit
 
 open class HighlightTextView: UITextView {
     
-    open var condition: Condition = Condition(characterMaxLimit: 100, characterMinLimit: nil, highlightColor: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+    open var condition: Condition = Condition(characterMaxLimit: 100, highlightColor: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
     
     open override func awakeFromNib() {
         super.awakeFromNib()
