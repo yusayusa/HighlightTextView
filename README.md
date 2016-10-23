@@ -12,7 +12,7 @@ Swift **3.0**
 
 ## Usage
 ```swift
-let textView = HighlightTextView()
+let textView: HighlightTextView
 
 // set character limit
 textView.characterLimit = 200
