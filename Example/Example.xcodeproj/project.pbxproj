@@ -12,6 +12,8 @@
 		606FFE881DABBC0200A0C14A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 606FFE861DABBC0200A0C14A /* Main.storyboard */; };
 		606FFE8A1DABBC0200A0C14A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 606FFE891DABBC0200A0C14A /* Assets.xcassets */; };
 		606FFE8D1DABBC0200A0C14A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 606FFE8B1DABBC0200A0C14A /* LaunchScreen.storyboard */; };
+		607257201DBD12A20003E1A6 /* HighlightTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6072571F1DBD12A20003E1A6 /* HighlightTextView.framework */; };
+		607257211DBD12A20003E1A6 /* HighlightTextView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6072571F1DBD12A20003E1A6 /* HighlightTextView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,6 +23,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				607257211DBD12A20003E1A6 /* HighlightTextView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,6 +38,7 @@
 		606FFE891DABBC0200A0C14A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		606FFE8C1DABBC0200A0C14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		606FFE8E1DABBC0200A0C14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6072571F1DBD12A20003E1A6 /* HighlightTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HighlightTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607257201DBD12A20003E1A6 /* HighlightTextView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +56,7 @@
 		606FFE761DABBC0200A0C14A = {
 			isa = PBXGroup;
 			children = (
+				6072571F1DBD12A20003E1A6 /* HighlightTextView.framework */,
 				606FFE811DABBC0200A0C14A /* Example */,
 				606FFE801DABBC0200A0C14A /* Products */,
 			);

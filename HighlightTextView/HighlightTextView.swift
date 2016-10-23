@@ -10,7 +10,7 @@ import UIKit
 
 open class HighlightTextView: UITextView {
     
-    open var condition: Condition = Condition(characterMaxLimit: 100, highlightColor: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+    open var condition: Condition?
     
     open override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,22 +24,41 @@ open class HighlightTextView: UITextView {
     
     private dynamic func didChangeTextView() {
         
-        guard let characterMaxLimit = condition.characterMaxLimit, let highlightColor = condition.highlightColor else {
-            return
-        }
-        
-        if text.characters.count < characterMaxLimit {
-            return
-        }
-        
         if markedTextRange != nil {
             return
         }
-        
-        let attributes = NSMutableAttributedString(attributedString: attributedText)
-        attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
-                                 range: NSRange(location: characterMaxLimit,
-                                                length: text.characters.count - characterMaxLimit))
-        attributedText = attributes
+
+        if let characterMinLimit = condition?.characterMinLimit,
+            let highlightColor = condition?.highlightColor {
+            
+            if text.characters.count >= characterMinLimit {
+                
+                let attributes = NSMutableAttributedString(attributedString: attributedText)
+                attributes.addAttributes([NSBackgroundColorAttributeName: UIColor.clear],
+                                         range: NSRange(location: 0,
+                                                        length: text.characters.count))
+                attributedText = attributes
+            }
+            
+            if text.characters.count < characterMinLimit {
+                
+                let attributes = NSMutableAttributedString(attributedString: attributedText)
+                attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
+                                         range: NSRange(location: 0,
+                                                        length: text.characters.count))
+                attributedText = attributes
+            }
+        }
+
+        if let characterMaxLimit = condition?.characterMaxLimit,
+            let highlightColor = condition?.highlightColor,
+            text.characters.count >= characterMaxLimit {
+            
+            let attributes = NSMutableAttributedString(attributedString: attributedText)
+            attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
+                                     range: NSRange(location: characterMaxLimit,
+                                                    length: text.characters.count - characterMaxLimit))
+            attributedText = attributes
+        }
     }
 }
