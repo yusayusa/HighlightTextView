@@ -8,17 +8,17 @@
 
 ## Requirements
 
-Swift **3.0**
+Swift **3.0** iOS **8.0**
 
 ## Usage
 ```swift
 let textView: HighlightTextView
 
-// set character limit
-textView.characterLimit = 200
+// set condition (maximum character limit and background color, minimum character limit and background color)
 
-// set background color
-textView.overLimitBackgroundColor = UIColor.red
+textView.condition = Condition(maxLimit: Condition.MaxLimit(characterLimit: 50, highlightColor: UIColor.red),
+                               minLimit: Condition.MinLimit(characterLimit: 20, highlightColor: UIColor.gray)
+                               )
 ```
 
 ## License
