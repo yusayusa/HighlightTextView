@@ -9,7 +9,20 @@
 ## Requirements
 
 Swift **3.0**
-iOS **8.0**
+iOS **8.0+**
+
+## Installation
+
+### Carthage
+
+HighlightTextView is available through Carthage. To install it, simply add the following line to your Cartfile:
+```
+github "yusayusa/HighlightTextView"
+```
+
+### CocoaPods
+
+TODO
 
 ## Usage
 ```swift
