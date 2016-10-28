@@ -42,23 +42,13 @@ open class HighlightTextView: UITextView {
         if let characterMinLimit = condition?.minLimit?.characterLimit,
             let highlightColor = condition?.minLimit?.highlightColor {
             
-            if text.characters.count >= characterMinLimit {
-                
-                let attributes = NSMutableAttributedString(attributedString: attributedText)
-                attributes.addAttributes([NSBackgroundColorAttributeName: UIColor.clear],
-                                         range: NSRange(location: 0,
-                                                        length: text.characters.count))
-                attributedText = attributes
-            }
+            let color = text.characters.count >= characterMinLimit ? UIColor.clear : highlightColor
             
-            if text.characters.count < characterMinLimit {
-                
-                let attributes = NSMutableAttributedString(attributedString: attributedText)
-                attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
-                                         range: NSRange(location: 0,
-                                                        length: text.characters.count))
-                attributedText = attributes
-            }
+            let attributes = NSMutableAttributedString(attributedString: attributedText)
+            attributes.addAttributes([NSBackgroundColorAttributeName: color],
+                                     range: NSRange(location: 0,
+                                                    length: text.characters.count))
+            attributedText = attributes
         }
         
         if let characterMaxLimit = condition?.maxLimit?.characterLimit,
