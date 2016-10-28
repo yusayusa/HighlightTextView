@@ -47,7 +47,7 @@ open class HighlightTextView: UITextView {
             let attributes = NSMutableAttributedString(attributedString: attributedText)
             attributes.addAttributes([NSBackgroundColorAttributeName: color],
                                      range: NSRange(location: 0,
-                                                    length: text.characters.count))
+                                                    length: attributedText.length))
             attributedText = attributes
         }
         
@@ -55,11 +55,19 @@ open class HighlightTextView: UITextView {
             let highlightColor = condition?.maxLimit?.highlightColor,
             text.characters.count >= characterMaxLimit {
             
-            let attributes = NSMutableAttributedString(attributedString: attributedText)
-            attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
-                                     range: NSRange(location: characterMaxLimit,
-                                                    length: text.characters.count - characterMaxLimit))
-            attributedText = attributes
+            if text.characters.count == characterMaxLimit {
+                maxLocationLength = attributedText.length
+            }
+            
+            if let maxLocationLength = maxLocationLength {
+                let attributes = NSMutableAttributedString(attributedString: attributedText)
+                attributes.addAttributes([NSBackgroundColorAttributeName: highlightColor],
+                                         range: NSRange(location: maxLocationLength,
+                                                        length: attributedText.length - maxLocationLength))
+                attributedText = attributes
+            }
         }
     }
+    
+    private var maxLocationLength: Int?
 }
