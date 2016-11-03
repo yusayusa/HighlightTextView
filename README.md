@@ -3,7 +3,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 <p align="center">
-  <img src="HighlightTextView.png" width=375>
+  <img src="HighlightTextView.gif" width=375>
 </p>
 
 ## Requirements
