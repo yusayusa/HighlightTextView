@@ -27,13 +27,14 @@ TODO
 
 ## Usage
 ```swift
-let textView: HighlightTextView
+let textView: UITextView
 
 // set condition (maximum character limit and background color, minimum character limit and background color)
 
-textView.condition = Condition(maxLimit: Condition.MaxLimit(characterLimit: 50, highlightColor: UIColor.red),
-                               minLimit: Condition.MinLimit(characterLimit: 20, highlightColor: UIColor.gray)
-                               )
+let condition = Condition(range: Range(uncheckedBounds: (lower: 20, upper: 50)),
+                          minHighlightColor: UIColor.gray,
+                          maxHighlightColor: UIColor.red)
+textView.set(condition: condition)
 ```
 
 ## License
