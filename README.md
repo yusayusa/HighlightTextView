@@ -34,7 +34,7 @@ let textView: UITextView
 let condition = Condition(range: Range(uncheckedBounds: (lower: 20, upper: 50)),
                           minHighlightColor: UIColor.gray,
                           maxHighlightColor: UIColor.red)
-textView.set(condition: condition)
+textView.setHighlight(condition: condition)
 ```
 
 ## License
