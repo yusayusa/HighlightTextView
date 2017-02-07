@@ -21,7 +21,7 @@ final class ViewController: UIViewController {
       let condition = Condition(range: Range(20..<50),
                                 minHighlightColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.5),
                                 maxHighlightColor: #colorLiteral(red: 0.9960784314, green: 0.8, blue: 0.8039215686, alpha: 0.7006465517))
-      highlightTextView.set(condition: condition)
+      highlightTextView.setHighlight(condition: condition)
     }
   }
 }
