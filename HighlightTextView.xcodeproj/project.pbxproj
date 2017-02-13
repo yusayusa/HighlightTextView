@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6012C4231E51EF1400B00D05 /* HighlightTextViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012C4221E51EF1400B00D05 /* HighlightTextViewTests.swift */; };
+		6012C4251E51EF1400B00D05 /* HighlightTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606FFE6B1DABB3F200A0C14A /* HighlightTextView.framework */; };
 		606FFE701DABB3F200A0C14A /* HighlightTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 606FFE6E1DABB3F200A0C14A /* HighlightTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		606FFEAB1DABBE3200A0C14A /* HighlightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FFEAA1DABBE3200A0C14A /* HighlightTextView.swift */; };
 		6072571D1DBD07660003E1A6 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072571C1DBD07660003E1A6 /* Condition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6012C4261E51EF1400B00D05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606FFE621DABB3F200A0C14A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 606FFE6A1DABB3F200A0C14A;
+			remoteInfo = HighlightTextView;
+		};
 		606FFE981DABBC0300A0C14A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606FFE941DABBC0200A0C14A /* Example.xcodeproj */;
@@ -23,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6012C4201E51EF1400B00D05 /* HighlightTextViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HighlightTextViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6012C4221E51EF1400B00D05 /* HighlightTextViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTextViewTests.swift; sourceTree = "<group>"; };
+		6012C4241E51EF1400B00D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		606FFE6B1DABB3F200A0C14A /* HighlightTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HighlightTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		606FFE6E1DABB3F200A0C14A /* HighlightTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighlightTextView.h; sourceTree = "<group>"; };
 		606FFE6F1DABB3F200A0C14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +44,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6012C41D1E51EF1400B00D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6012C4251E51EF1400B00D05 /* HighlightTextView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		606FFE671DABB3F200A0C14A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,11 +62,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6012C4211E51EF1400B00D05 /* HighlightTextViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				6012C4221E51EF1400B00D05 /* HighlightTextViewTests.swift */,
+				6012C4241E51EF1400B00D05 /* Info.plist */,
+			);
+			path = HighlightTextViewTests;
+			sourceTree = "<group>";
+		};
 		606FFE611DABB3F200A0C14A = {
 			isa = PBXGroup;
 			children = (
 				606FFE941DABBC0200A0C14A /* Example.xcodeproj */,
 				606FFE6D1DABB3F200A0C14A /* HighlightTextView */,
+				6012C4211E51EF1400B00D05 /* HighlightTextViewTests */,
 				606FFE6C1DABB3F200A0C14A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				606FFE6B1DABB3F200A0C14A /* HighlightTextView.framework */,
+				6012C4201E51EF1400B00D05 /* HighlightTextViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +123,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		6012C41F1E51EF1400B00D05 /* HighlightTextViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6012C4281E51EF1400B00D05 /* Build configuration list for PBXNativeTarget "HighlightTextViewTests" */;
+			buildPhases = (
+				6012C41C1E51EF1400B00D05 /* Sources */,
+				6012C41D1E51EF1400B00D05 /* Frameworks */,
+				6012C41E1E51EF1400B00D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6012C4271E51EF1400B00D05 /* PBXTargetDependency */,
+			);
+			name = HighlightTextViewTests;
+			productName = HighlightTextViewTests;
+			productReference = 6012C4201E51EF1400B00D05 /* HighlightTextViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		606FFE6A1DABB3F200A0C14A /* HighlightTextView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 606FFE731DABB3F200A0C14A /* Build configuration list for PBXNativeTarget "HighlightTextView" */;
@@ -116,9 +165,15 @@
 		606FFE621DABB3F200A0C14A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = KazukiYusa;
 				TargetAttributes = {
+					6012C41F1E51EF1400B00D05 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6G64JM9YSV;
+						ProvisioningStyle = Automatic;
+					};
 					606FFE6A1DABB3F200A0C14A = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
@@ -145,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				606FFE6A1DABB3F200A0C14A /* HighlightTextView */,
+				6012C41F1E51EF1400B00D05 /* HighlightTextViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -160,6 +216,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6012C41E1E51EF1400B00D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		606FFE691DABB3F200A0C14A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,6 +233,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6012C41C1E51EF1400B00D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6012C4231E51EF1400B00D05 /* HighlightTextViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		606FFE661DABB3F200A0C14A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,7 +252,43 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6012C4271E51EF1400B00D05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 606FFE6A1DABB3F200A0C14A /* HighlightTextView */;
+			targetProxy = 6012C4261E51EF1400B00D05 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		6012C4291E51EF1400B00D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 6G64JM9YSV;
+				INFOPLIST_FILE = HighlightTextViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yusakzk.HighlightTextViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6012C42A1E51EF1400B00D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 6G64JM9YSV;
+				INFOPLIST_FILE = HighlightTextViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yusakzk.HighlightTextViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		606FFE711DABB3F200A0C14A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -323,6 +430,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6012C4281E51EF1400B00D05 /* Build configuration list for PBXNativeTarget "HighlightTextViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6012C4291E51EF1400B00D05 /* Debug */,
+				6012C42A1E51EF1400B00D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		606FFE651DABB3F200A0C14A /* Build configuration list for PBXProject "HighlightTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
