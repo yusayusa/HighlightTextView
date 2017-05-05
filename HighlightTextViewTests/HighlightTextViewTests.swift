@@ -37,6 +37,7 @@ class HighlightTextViewTests: XCTestCase {
     return string
   }
   
+  // normal text
   func testTextCharactersMinColor() {
     
     textView.text = createText(charactersCount: 1)
@@ -105,6 +106,79 @@ class HighlightTextViewTests: XCTestCase {
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.maxColor == color, "testTextCharactersMaxColor")
+      }
+    }
+  }
+  
+  // emoji text
+  func testEmojiTextCharactersMinColor() {
+    
+    textView.text = createEmojiText(charactersCount: 1)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(HighlightTextViewTests.minColor == color, "testEmojiTextCharactersMinColor")
+      }
+    }
+  }
+  
+  func testEmojiTextCharactersMinColor2() {
+    
+    textView.text = createEmojiText(charactersCount: 9)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(HighlightTextViewTests.minColor == color, "testEmojiTextCharactersMinColor2")
+      }
+    }
+  }
+  
+  func testEmojiTextCharactersNonColor() {
+    
+    textView.text = createEmojiText(charactersCount: 10)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor")
+      }
+    }
+  }
+  
+  func testEmojiTextCharactersNonColor2() {
+    
+    textView.text = createEmojiText(charactersCount: 99)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor2")
+      }
+    }
+  }
+  
+  func testEmojiTextCharactersNonColor3() {
+    
+    textView.text = createEmojiText(charactersCount: 100)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor3")
+      }
+    }
+  }
+  
+  func testEmojiTextCharactersMaxColor() {
+    
+    textView.text = createEmojiText(charactersCount: 101)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(HighlightTextViewTests.maxColor == color, "testEmojiTextCharactersMaxColor")
       }
     }
   }
