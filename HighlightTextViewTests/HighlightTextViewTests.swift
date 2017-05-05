@@ -45,9 +45,7 @@ class HighlightTextViewTests: XCTestCase {
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.minColor == color, "testTextCharactersMinColor")
-        return
       }
-      XCTFail("testTextCharactersMinColor")
     }
   }
   
@@ -59,9 +57,7 @@ class HighlightTextViewTests: XCTestCase {
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.minColor == color, "testTextCharactersMinColor2")
-        return
       }
-      XCTFail("testTextCharactersMinColor2")
     }
   }
   
@@ -72,19 +68,31 @@ class HighlightTextViewTests: XCTestCase {
     
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
-        XCTFail("testTextCharactersNonColor")
+        XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor")
       }
     }
   }
   
   func testTextCharactersNonColor2() {
     
+    textView.text = createText(charactersCount: 99)
+    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    
+    textView.text.characters.enumerated().forEach { index, _ in
+      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor2")
+      }
+    }
+  }
+
+  func testTextCharactersNonColor3() {
+    
     textView.text = createText(charactersCount: 100)
     textView.setHighlight(condition: HighlightTextViewTests.condition)
     
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
-        XCTFail("testTextCharactersNonColor2")
+        XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor3")
       }
     }
   }
@@ -97,10 +105,7 @@ class HighlightTextViewTests: XCTestCase {
     textView.text.characters.enumerated().forEach { index, _ in
       if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.maxColor == color, "testTextCharactersMaxColor")
-        return
       }
-      XCTFail("testTextCharactersMaxColor")
     }
   }
-
 }

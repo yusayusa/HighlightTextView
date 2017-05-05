@@ -437,6 +437,7 @@
 				6012C42A1E51EF1400B00D05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		606FFE651DABB3F200A0C14A /* Build configuration list for PBXProject "HighlightTextView" */ = {
 			isa = XCConfigurationList;

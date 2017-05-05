@@ -11,7 +11,20 @@ import UIKit
 extension UITextView {
   
   private enum StoredProperties {
+    static var minLength: Void?
     static var maxLength: Void?
+  }
+  
+  private var minLength: Int? {
+    get {
+      return objc_getAssociatedObject(self, &StoredProperties.minLength) as? Int
+    }
+    set {
+      objc_setAssociatedObject(self,
+                               &StoredProperties.minLength,
+                               newValue,
+                               objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+    }
   }
   
   private var maxLength: Int? {
@@ -28,34 +41,8 @@ extension UITextView {
   
   public func setHighlight(condition: Condition) {
     
-    let min = condition.range.lowerBound
-    let max = condition.range.upperBound
+    highlight(condition: condition)
 
-    if min != Int.min {
-      
-      let color = text.characters.count >= min ? UIColor.clear : condition.minHighlightColor
-      let attributes = NSMutableAttributedString(attributedString: attributedText)
-      attributes.addAttributes([NSBackgroundColorAttributeName: color],
-                               range: NSRange(location: 0,
-                                              length: attributedText.length))
-      attributedText = attributes
-    }
-    
-    if max != Int.max, text.characters.count >= max {
-      
-      if text.characters.count >= max {
-        maxLength = max
-      }
-      
-      if let maxLocationLength = maxLength {
-        let attributes = NSMutableAttributedString(attributedString: attributedText)
-        attributes.addAttributes([NSBackgroundColorAttributeName: condition.maxHighlightColor],
-                                 range: NSRange(location: maxLocationLength,
-                                                length: attributedText.length - maxLocationLength))
-        attributedText = attributes
-      }
-    }
-    
     NotificationCenter.default
       .addObserver(forName: .UITextViewTextDidChange,
                    object: nil,
@@ -70,32 +57,56 @@ extension UITextView {
       return
     }
     
-    let min = condition.range.lowerBound
-    let max = condition.range.upperBound
+    setLength(condition: condition)
     
-    if min != Int.min {
+    guard let min = minLength, let max = maxLength else {
+      return
+    }
+    
+    if min != Int.min, text.characters.count < min {
       
-      let color = text.characters.count >= min ? UIColor.clear : condition.minHighlightColor
       let attributes = NSMutableAttributedString(attributedString: attributedText)
-      attributes.addAttributes([NSBackgroundColorAttributeName: color],
+      attributes.addAttributes([NSBackgroundColorAttributeName: condition.minHighlightColor],
                                range: NSRange(location: 0,
                                               length: attributedText.length))
       attributedText = attributes
     }
     
-    if max != Int.max, text.characters.count >= max {
+    if text.characters.count > min && text.characters.count < max {
       
-      if text.characters.count == max {
-        maxLength = attributedText.length
-      }
+      let attributes = NSMutableAttributedString(attributedString: attributedText)
+      attributes.addAttributes([NSBackgroundColorAttributeName: UIColor.clear],
+                               range: NSRange(location: 0,
+                                              length: attributedText.length))
+      attributedText = attributes
+    }
+    
+    if max != Int.max, text.characters.count > max {
       
-      if let maxLocationLength = maxLength {
+      if attributedText.length - max > 0 {
+        
         let attributes = NSMutableAttributedString(attributedString: attributedText)
         attributes.addAttributes([NSBackgroundColorAttributeName: condition.maxHighlightColor],
-                                 range: NSRange(location: maxLocationLength,
-                                                length: attributedText.length - maxLocationLength))
+                                 range: NSRange(location: max,
+                                                length: attributedText.length - max))
         attributedText = attributes
       }
+    }
+  }
+  
+  private func setLength(condition: Condition) {
+    
+    let min = condition.range.lowerBound
+    let max = condition.range.upperBound
+
+    if text.characters.count != attributedText.length {
+      
+      minLength = attributedText.length
+      maxLength = max + (attributedText.length - text.characters.count)
+    } else {
+    
+      minLength = min
+      maxLength = max
     }
   }
 }

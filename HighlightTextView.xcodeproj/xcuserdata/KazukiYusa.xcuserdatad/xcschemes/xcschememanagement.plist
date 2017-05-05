@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>HighlightTextViewTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6012C41F1E51EF1400B00D05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>606FFE6A1DABB3F200A0C14A</key>
 		<dict>
 			<key>primary</key>
