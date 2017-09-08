@@ -10,11 +10,11 @@ import Foundation
 
 public struct Condition {
   
-  let range: ClosedRange<Int>
+  let range: Range<Int>
   let minHighlightColor: UIColor?
   let maxHighlightColor: UIColor?
   
-  public init(range: ClosedRange<Int>, minHighlightColor: UIColor? = nil, maxHighlightColor: UIColor? = nil) {
+  public init(range: Range<Int>, minHighlightColor: UIColor? = nil, maxHighlightColor: UIColor? = nil) {
     
     self.range = range
     self.minHighlightColor = minHighlightColor

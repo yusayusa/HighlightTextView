@@ -15,7 +15,7 @@ class HighlightTextViewTests: XCTestCase {
   let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
   static let minColor = UIColor.blue
   static let maxColor = UIColor.red
-  static let condition = Condition(range: 10...100,
+  static let condition = Condition(range: 10..<100,
                             minHighlightColor: HighlightTextViewTests.minColor,
                             maxHighlightColor: HighlightTextViewTests.maxColor)
 
