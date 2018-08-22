@@ -52,27 +52,29 @@ extension UITextView {
     if markedTextRange != nil {
       return
     }
-    
-    let min = condition.range.lowerBound
-    let max = condition.range.upperBound
-    
-    if min != Int.min {
-      
-      let color = attributedText.length >= min ? UIColor.clear : condition.minHighlightColor
-      let attributes = NSMutableAttributedString(attributedString: attributedText)
-      attributes.addAttributes([NSBackgroundColorAttributeName: color],
-                               range: NSRange(location: 0,
-                                              length: attributedText.length))
-      attributedText = attributes
+
+    textStorage.beginEditing()
+    defer {
+      textStorage.endEditing()
     }
-    
-    if max != Int.max, attributedText.length >= max {
+
+    let min = Swift.max(condition.range.lowerBound, 0)
+    let max = Swift.min(condition.range.upperBound, textStorage.length)
+
+    textStorage.addAttributes([NSBackgroundColorAttributeName: UIColor.clear],
+                              range: NSRange(location: 0,
+                                             length: textStorage.length))
+    if let color = condition.minHighlightColor, textStorage.length < min {
+
+      textStorage.addAttributes([NSBackgroundColorAttributeName: color],
+                                range: NSRange(location: 0,
+                                               length: textStorage.length))
+    }
+    else if let color = condition.maxHighlightColor, textStorage.length > max {
       
-      let attributes = NSMutableAttributedString(attributedString: attributedText)
-      attributes.addAttributes([NSBackgroundColorAttributeName: condition.maxHighlightColor],
+      textStorage.addAttributes([NSBackgroundColorAttributeName: color],
                                range: NSRange(location: max,
-                                              length: attributedText.length - max))
-      attributedText = attributes
+                                              length: textStorage.length - max))
     }
   }  
 }
