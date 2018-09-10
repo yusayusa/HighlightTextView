@@ -10,40 +10,68 @@ import UIKit
 
 extension UITextView {
   
-  private enum StoredProperties {
-    static var condition: Void?
+  private struct Condition {
+    
+    let range: Range<Int>
+    let minHighlightColor: UIColor?
+    let maxHighlightColor: UIColor?
+    
+    public init(range: Range<Int>, minHighlightColor: UIColor? = nil, maxHighlightColor: UIColor? = nil) {
+      
+      self.range = range
+      self.minHighlightColor = minHighlightColor
+      self.maxHighlightColor = maxHighlightColor
+    }
   }
 
+  private enum StoredProperties {
+    static var condition: Void?
+    static var subscription: Void?
+  }
+  
   private var condition: Condition? {
     get {
       return objc_getAssociatedObject(self, &StoredProperties.condition) as? Condition
     }
     set {
-      objc_setAssociatedObject(self,
-                               &StoredProperties.condition,
-                               newValue,
-                               objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+      objc_setAssociatedObject(
+        self,
+        &StoredProperties.condition,
+        newValue,
+        .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
   }
 
-  public func setHighlight(condition: Condition) {
-    
-    self.condition = condition
-    
-    highlight(condition: condition)
-
-    NotificationCenter.default
-      .addObserver(forName: .UITextViewTextDidChange,
-                   object: nil,
-                   queue: nil) { [weak self] _ in
-                    self?.highlight(condition: condition)
+  private var subscription: NSObjectProtocol? {
+    get {
+      return objc_getAssociatedObject(self, &StoredProperties.subscription) as? NSObjectProtocol
+    }
+    set {
+      objc_setAssociatedObject(
+        self,
+        &StoredProperties.subscription,
+        newValue,
+        .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+      )
     }
   }
   
-  public func refreshHighlight() {
+  public func setHighlight(range: Range<Int>, minHighlightColor: UIColor? = nil, maxHighlightColor: UIColor? = nil) {
     
-    if let condition = condition {
-      highlight(condition: condition)
+    let condition = Condition(range: range, minHighlightColor: minHighlightColor, maxHighlightColor: maxHighlightColor)
+    self.condition = condition
+    
+    highlight(condition: condition)
+    
+    if let subscription = self.subscription {
+      NotificationCenter.default.removeObserver(subscription)
+    }
+    
+    subscription = NotificationCenter.default.addObserver(
+      forName: .NSTextStorageDidProcessEditing,
+      object: textStorage,
+      queue: nil) { [weak self] _ in
+        self?.refreshHighlight()
     }
   }
   
@@ -76,6 +104,12 @@ extension UITextView {
                                range: NSRange(location: max,
                                               length: textStorage.length - max))
     }
-  }  
+  }
+  
+  private func refreshHighlight() {
+    
+    if let condition = condition {
+      highlight(condition: condition)
+    }
+  }
 }
-
