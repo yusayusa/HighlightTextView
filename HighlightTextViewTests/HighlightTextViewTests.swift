@@ -7,8 +7,9 @@
 //
 
 import XCTest
+import UIKit
 
-import HighlightTextView
+@testable import HighlightTextView
 
 class HighlightTextViewTests: XCTestCase {
   
@@ -17,9 +18,6 @@ class HighlightTextViewTests: XCTestCase {
   static let rangeMax = 100
   static let minColor = UIColor.blue
   static let maxColor = UIColor.red
-  static let condition = Condition(range: rangeMin..<rangeMax,
-                            minHighlightColor: HighlightTextViewTests.minColor,
-                            maxHighlightColor: HighlightTextViewTests.maxColor)
 
   func createText(charactersCount: Int) -> String {
     
@@ -38,15 +36,22 @@ class HighlightTextViewTests: XCTestCase {
     }
     return string
   }
+
+  func setCondition() {
+
+    textView.setHighlight(range: HighlightTextViewTests.rangeMin..<HighlightTextViewTests.rangeMax,
+                          minHighlightColor: HighlightTextViewTests.minColor,
+                          maxHighlightColor: HighlightTextViewTests.maxColor)
+  }
   
   // normal text
   func testTextCharactersMinColor() {
     
     textView.text = createText(charactersCount: 1)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
-    
+    setCondition()
+
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+        if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.minColor == color, "testTextCharactersMinColor")
       }
     }
@@ -55,10 +60,10 @@ class HighlightTextViewTests: XCTestCase {
   func testTextCharactersMinColor2() {
     
     textView.text = createText(charactersCount: 9)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.minColor == color, "testTextCharactersMinColor2")
       }
     }
@@ -67,10 +72,10 @@ class HighlightTextViewTests: XCTestCase {
   func testTextCharactersNonColor() {
     
     textView.text = createText(charactersCount: 10)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
-    
+    setCondition()
+
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor")
       }
     }
@@ -79,10 +84,10 @@ class HighlightTextViewTests: XCTestCase {
   func testTextCharactersNonColor2() {
     
     textView.text = createText(charactersCount: 99)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor2")
       }
     }
@@ -91,10 +96,10 @@ class HighlightTextViewTests: XCTestCase {
   func testTextCharactersNonColor3() {
     
     textView.text = createText(charactersCount: 100)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testTextCharactersNonColor3")
       }
     }
@@ -103,10 +108,10 @@ class HighlightTextViewTests: XCTestCase {
   func testTextCharactersMaxColor() {
     
     textView.text = createText(charactersCount: 101)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         if index < HighlightTextViewTests.rangeMax {
           XCTAssertTrue(UIColor.clear == color, "testTextCharactersMaxColor")
         }
@@ -121,10 +126,10 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersMinColor() {
     
     textView.text = createEmojiText(charactersCount: 1)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(HighlightTextViewTests.minColor == color, "testEmojiTextCharactersMinColor")
       }
     }
@@ -133,11 +138,11 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersMinColor2() {
     
     textView.text = createEmojiText(charactersCount: 9)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
-    
-    textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
-        XCTAssertTrue(HighlightTextViewTests.minColor == color, "testEmojiTextCharactersMinColor2")
+    setCondition()
+
+    textView.text.enumerated().forEach { index, text in
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
+        XCTAssertTrue(HighlightTextViewTests.minColor == color, "testEmojiTextCharactersMinColor2 at:\(index) text:\(text)")
       }
     }
   }
@@ -145,10 +150,10 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersNonColor() {
     
     textView.text = createEmojiText(charactersCount: 10)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor")
       }
     }
@@ -157,10 +162,10 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersNonColor2() {
     
     textView.text = createEmojiText(charactersCount: 99)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor2")
       }
     }
@@ -169,10 +174,10 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersNonColor3() {
     
     textView.text = createEmojiText(charactersCount: 100)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersNonColor3")
       }
     }
@@ -181,10 +186,10 @@ class HighlightTextViewTests: XCTestCase {
   func testEmojiTextCharactersMaxColor() {
     
     textView.text = createEmojiText(charactersCount: 101)
-    textView.setHighlight(condition: HighlightTextViewTests.condition)
+    setCondition()
     
     textView.text.enumerated().forEach { index, _ in
-      if let color = textView.attributedText.attribute(NSBackgroundColorAttributeName, at: index, effectiveRange: nil) as? UIColor {
+      if let color = textView.attributedText.attribute(.backgroundColor, at: index, effectiveRange: nil) as? UIColor {
         if index < HighlightTextViewTests.rangeMax {
           XCTAssertTrue(UIColor.clear == color, "testEmojiTextCharactersMaxColor")
         }

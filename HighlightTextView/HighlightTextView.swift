@@ -68,7 +68,7 @@ extension UITextView {
     }
     
     subscription = NotificationCenter.default.addObserver(
-      forName: .NSTextStorageDidProcessEditing,
+      forName: NSTextStorage.didProcessEditingNotification,
       object: textStorage,
       queue: nil) { [weak self] _ in
         self?.refreshHighlight()
@@ -89,20 +89,20 @@ extension UITextView {
     let min = Swift.max(condition.range.lowerBound, 0)
     let max = Swift.min(condition.range.upperBound, textStorage.length)
 
-    textStorage.addAttributes([NSBackgroundColorAttributeName: UIColor.clear],
+    textStorage.addAttributes([.backgroundColor: UIColor.clear],
                               range: NSRange(location: 0,
                                              length: textStorage.length))
     if let color = condition.minHighlightColor, textStorage.length < min {
 
-      textStorage.addAttributes([NSBackgroundColorAttributeName: color],
+      textStorage.addAttributes([.backgroundColor: color],
                                 range: NSRange(location: 0,
                                                length: textStorage.length))
     }
     else if let color = condition.maxHighlightColor, textStorage.length > max {
       
-      textStorage.addAttributes([NSBackgroundColorAttributeName: color],
-                               range: NSRange(location: max,
-                                              length: textStorage.length - max))
+      textStorage.addAttributes([.backgroundColor: color],
+                                range: NSRange(location: max,
+                                               length: textStorage.length - max))
     }
   }
   
