@@ -23,7 +23,9 @@ github "yusayusa/HighlightTextView"
 
 ### CocoaPods
 
-TODO
+```
+pod "HighlightTextView"
+```
 
 ## Usage
 ```swift

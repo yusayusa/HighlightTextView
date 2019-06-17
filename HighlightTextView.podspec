@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "HighlightTextView"
-  spec.version      = "0.5.0"
+  spec.version      = "0.6.0"
   spec.summary      = "Highlight TextView."
   spec.homepage     = "https://github.com/yusayusa/HighlightTextView"
   spec.license      = "MIT"
